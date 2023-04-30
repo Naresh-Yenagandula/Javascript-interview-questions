@@ -254,7 +254,7 @@ function myMemoize(fn, context) {
   return function (...args) {
     var argsCache = JSON.stringify(args);
     if (!res[argsCache]) {
-      res[(argsCache = fn.call(context || this, ...args))];
+      res[argsCache] = fn.call(context || this, ...args);
     }
 
     return res[argsCache];
