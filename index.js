@@ -321,3 +321,140 @@ function sum(a) {
     return a;
   };
 }
+
+/* Promise Combinator */
+// 1. Promise.all
+// -> Runs all promises at same time and if something failed then stops the execution
+
+// 2. Promise.race
+// -> Returns first promise which gets fullfilled or rejected
+
+// 3. Promise.allSettled
+// -> waits for all promises to get settled (rejected and fulfilled)
+
+// 4. Promise.any
+// -> Returns first fullfilled promise (if all promise gets rejected, then it returns "all promised get rejected")
+
+/* Promise O/P based questions */
+// Q1.
+console.log("start");
+
+const promise1 = new Promise((resolve, reject) => {
+  console.log(1);
+  resolve(2);
+});
+
+promise1.then((res) => {
+  console.log(res);
+});
+
+console.log("end");
+
+// Ans
+// start
+// 1
+// end
+// 2
+
+// Q2.
+console.log("start");
+
+const promise2 = new Promise((resolve, reject) => {
+  console.log(1);
+  resolve(2);
+  console.log(3);
+});
+
+promise2.then((res) => {
+  console.log(res);
+});
+
+console.log("end");
+
+// Ans
+// start
+// 1
+// 3
+// end
+// 2
+
+// Q3.
+console.log("start");
+
+const promise3 = new Promise((resolve, reject) => {
+  console.log(1);
+});
+
+promise3.then((res) => {
+  console.log("Result", res);
+});
+
+console.log("end");
+
+// Ans
+// start
+// 1
+// end
+
+// Q4.
+console.log("start");
+const fn = () =>
+  new Promise((resolve, reject) => {
+    console.log(1);
+    resolve(2);
+  });
+
+console.log("middle");
+fn().then((res) => {
+  console.log(res);
+});
+
+console.log("end");
+
+// Ans
+// start
+// middle
+// 1
+// end
+// 2
+
+/* Variable shadowing */
+function test() {
+  let a = "hello";
+
+  if (true) {
+    let a = "Hi"; // varibale shadowing
+    console.log(a);
+  }
+
+  console.log(a);
+}
+
+// Hi
+// hello
+
+/* Illegal Shadwoing */
+function test() {
+  let a = "hello";
+
+  if (true) {
+    // var a = "Hi";  illegal shadowing
+    console.log(a);
+  }
+
+  console.log(a);
+}
+
+/* Javascript Execution context */
+// 1. Creation phase -> Where it declares variable and functions
+// 2. execution phase -> assign value and execute code
+
+/* Objects */
+const property = "firstName";
+const name = "XYZ";
+
+const users = {
+  [property]: name,
+};
+
+console.log(user); // {firstName: "XYZ"}
